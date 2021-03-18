@@ -8,7 +8,6 @@
       </p>
       <el-button plain>Plain</el-button>
     </div>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
     <router-view></router-view>
   </div>
 </template>
