@@ -1,12 +1,12 @@
 <template>
   <el-row type="flex" justify="center">
     <el-col class="el-row-width">
-      <h1>Регистрация пользователя</h1>
+      <h1>Вход в систему</h1>
       <el-form
         :model="ruleForm"
         :rules="rules"
         ref="ruleForm"
-        label-width="150px"
+        label-width="90px"
         label-position="left"
         class=""
         size="medium"
@@ -26,15 +26,9 @@
             placeholder="Пароль"
           ></el-input>
         </el-form-item>
-        <el-form-item label="Эксперт ООО ЦДС?" prop="firma">
-          <el-select v-model="ruleForm.firma" placeholder="Эксперт ООО ЦДС?">
-            <el-option label="Да" value="Yes"></el-option>
-            <el-option label="Нет" value="No"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')"
-            >Зарегистрироваться</el-button
+            >Войти</el-button
           >
           <el-button @click="resetForm('ruleForm')">Очистить поля</el-button>
         </el-form-item>
@@ -65,13 +59,6 @@ export default {
             trigger: "blur"
           }
         ],
-        firma: [
-          {
-            required: true,
-            message: "Выберите значение",
-            trigger: "change"
-          }
-        ],
         password: [
           {
             required: true,
@@ -97,10 +84,9 @@ export default {
         }
 
         try {
-          await this.$store.dispatch("register", {
+          await this.$store.dispatch("login", {
             email: this.ruleForm.email,
-            password: this.ruleForm.password,
-            firma: this.ruleForm.firma
+            password: this.ruleForm.password
           });
           this.$router.push("/");
         } catch (e) {
@@ -114,7 +100,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 h1 {
   text-align: center;

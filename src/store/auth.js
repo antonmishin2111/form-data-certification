@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import firebase from "firebase/app";
 
 export default {
@@ -6,7 +5,7 @@ export default {
     async login({ commit, dispatch }, { email, password }) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
-        await dispatch("fetchInfo");
+        await dispatch("fetchUser");
       } catch (e) {
         commit("setError", e);
       }
@@ -14,7 +13,7 @@ export default {
     async register({ commit, dispatch }, { email, password }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        const uid = await dispatch("getUid");
+        await dispatch("fetchUser");
         // const uid = firebase.auth().currentUser.uid;
         // await firebase
         //   .database()

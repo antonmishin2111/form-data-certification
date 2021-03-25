@@ -6,6 +6,7 @@ import {
   Input,
   Form,
   FormItem,
+  Loading,
   Option,
   Row,
   Select
@@ -23,6 +24,7 @@ import "element-ui/lib/theme-chalk/main.css";
 import "element-ui/lib/theme-chalk/option.css";
 import "element-ui/lib/theme-chalk/row.css";
 import "element-ui/lib/theme-chalk/select.css";
+import "element-ui/lib/theme-chalk/loading.css";
 
 locale.use(lang);
 
@@ -35,3 +37,4 @@ Vue.use(FormItem);
 Vue.use(Option);
 Vue.use(Row);
 Vue.use(Select);
+Vue.use(Loading);
