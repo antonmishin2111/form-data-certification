@@ -10,10 +10,20 @@ export default {
         commit("setError", e);
       }
     },
-    async register({ commit, dispatch }, { email, password }) {
+    async register({ commit, dispatch }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await dispatch("fetchUser");
+        const user = firebase.auth().currentUser;
+
+        if (user != null) {
+          await user.updateProfile({
+            displayName: name,
+            email: email
+          });
+          console.log(user);
+          await dispatch("fetchUser");
+        }
+
         // const uid = firebase.auth().currentUser.uid;
         // await firebase
         //   .database()
@@ -30,7 +40,7 @@ export default {
     },
     async logout({ commit }) {
       await firebase.auth().signOut();
-      commit("clearInfo");
+      commit("unSetUser");
     }
   }
 };

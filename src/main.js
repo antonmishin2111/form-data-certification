@@ -10,6 +10,7 @@ import "firebase/database";
 import config from "./firebase/configFirebase.js";
 
 import Loader from "./components/Loader";
+import "./assets/tailwind.css";
 
 Vue.component("loader", Loader);
 

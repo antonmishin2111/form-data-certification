@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import auth from "./auth";
-// import firebase from "firebase/app";
+import firebase from "firebase/app";
 
 Vue.use(Vuex);
 
@@ -34,8 +34,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchUser({ commit }, currentUser) {
-      // const currentUser = firebase.auth().currentUser;
+    fetchUser({ commit }) {
+      const currentUser = firebase.auth().currentUser;
       let profile = {};
 
       if (currentUser != null) {
@@ -51,7 +51,8 @@ export default new Vuex.Store({
   },
   getters: {
     error: state => state.error,
-    userAuth: state => state.user.auth
+    userAuth: state => state.user.auth,
+    userName: state => state.user.name
   },
   modules: { auth }
 });

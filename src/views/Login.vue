@@ -1,7 +1,7 @@
 <template>
-  <el-row type="flex" justify="center">
-    <el-col class="el-row-width">
-      <h1>Вход в систему</h1>
+  <div class="tw-my-0 tw-mx-auto">
+    <div class="tw-bg-white tw-py-3 tw-px-6 login tw-xs:tw-min-w-max">
+      <h1 class="tw-text-center tw-mb-3">Вход в систему</h1>
       <el-form
         :model="ruleForm"
         :rules="rules"
@@ -33,8 +33,8 @@
           <el-button @click="resetForm('ruleForm')">Очистить поля</el-button>
         </el-form-item>
       </el-form>
-    </el-col>
-  </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -100,17 +100,9 @@ export default {
   }
 };
 </script>
-<style scoped>
-h1 {
-  text-align: center;
-}
 
-.el-row {
-  margin: 0 auto;
-}
-.el-row-width {
+<style scoped>
+.login {
   min-width: 490px;
-  background: white;
-  padding: 10px 30px;
 }
 </style>
