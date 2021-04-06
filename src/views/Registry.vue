@@ -1,12 +1,12 @@
 <template>
-  <el-row type="flex" justify="center">
-    <el-col class="el-row-width">
-      <h1>Регистрация пользователя</h1>
+  <div class="tw-my-0 tw-mx-auto">
+    <div class="tw-bg-white tw-py-3 tw-px-6 login tw-xs:tw-min-w-max">
+      <h1 class="tw-text-center tw-mb-3">Регистрация пользователя</h1>
       <el-form
         :model="ruleForm"
         :rules="rules"
         ref="ruleForm"
-        label-width="150px"
+        label-width="157px"
         label-position="left"
         class=""
         size="medium"
@@ -18,12 +18,19 @@
             placeholder="Email"
           ></el-input>
         </el-form-item>
-        <el-form-item label="Пароль" prop="password">
+        <el-form-item label="Пароль" prop="password" class="tw-mb-8">
           <el-input
             v-model="ruleForm.password"
             show-password
             clearable
             placeholder="Пароль"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="Полное имя" prop="name">
+          <el-input
+            v-model="ruleForm.name"
+            clearable
+            placeholder="Введите Фамилию и Имя полностью"
           ></el-input>
         </el-form-item>
         <el-form-item label="Эксперт ООО ЦДС?" prop="firma">
@@ -39,8 +46,8 @@
           <el-button @click="resetForm('ruleForm')">Очистить поля</el-button>
         </el-form-item>
       </el-form>
-    </el-col>
-  </el-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -50,9 +57,22 @@ export default {
       ruleForm: {
         email: "",
         firma: "",
+        name: "",
         password: ""
       },
       rules: {
+        name: [
+          {
+            required: true,
+            message: "Поле не может быть пустым, заполните его",
+            trigger: "blur"
+          },
+          {
+            min: 6,
+            message: "Введите имя фамилию и имя полностью",
+            trigger: "blur"
+          }
+        ],
         email: [
           {
             required: true,
@@ -92,7 +112,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(async valid => {
         if (!valid) {
-          console.log("error submit!!");
+          // console.log("error submit!!");
           return false;
         }
 
@@ -100,11 +120,12 @@ export default {
           await this.$store.dispatch("register", {
             email: this.ruleForm.email,
             password: this.ruleForm.password,
-            firma: this.ruleForm.firma
+            firma: this.ruleForm.firma,
+            name: this.ruleForm.name
           });
           this.$router.push("/");
         } catch (e) {
-          console.log(e.message);
+          // console.log(e.message);
         }
       });
     },
@@ -116,16 +137,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  text-align: center;
-}
-
-.el-row {
-  margin: 0 auto;
-}
-.el-row-width {
+.login {
   min-width: 490px;
-  background: white;
-  padding: 10px 30px;
 }
 </style>

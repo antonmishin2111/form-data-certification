@@ -2,6 +2,7 @@
   <div class="home">
     <h1>This is an Home page</h1>
     <p>{{ isAuth }}</p>
+    <p>{{ user.name }}</p>
   </div>
 </template>
 
@@ -12,7 +13,10 @@ export default {
   name: "Home",
   computed: {
     isAuth() {
-      return this.$store.getters.userAuth;
+      return this.$store.getters.isAuth;
+    },
+    user() {
+      return this.$store.getters.user;
     }
   }
 };
