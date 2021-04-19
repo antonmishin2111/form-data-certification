@@ -15,7 +15,6 @@ export default {
   name: "app",
   computed: {
     layout() {
-      console.log(this.$route.meta);
       return (this.$route.meta.layout || "loading") + "-layout";
     }
   },

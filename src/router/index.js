@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import firebase from "firebase/app";
 import store from "../store";
 
 Vue.use(VueRouter);
@@ -53,14 +52,6 @@ router.beforeEach((to, from, next) => {
   console.log(requireAuth);
   console.log(isInited);
   console.log(isAuth);
-  // if (isInited) {
-  //   if (!isAuth && to.matched.some(record => record.meta.auth)) {
-  //     return next("/login");
-  //   } else if (isAuth && to.name === "login") {
-  //     return next("/");
-  //   }
-  // }
-
   console.log(requireAuth);
 
   if (requireAuth) {
@@ -78,22 +69,5 @@ router.beforeEach((to, from, next) => {
     }
     next();
   }
-
-  // if (requireAuth) {
-  //   if (!authenticated) {
-
-  //     next("/login?message=login");
-  //   } else {
-  //     console.log("Log2:");
-  //     next();
-  //   }
-  // } else {
-  //   if (authenticated && to.name === "Login") {
-  //     console.log("Log3:");
-  //     next("/");
-  //   }
-  //   console.log("Log4:");
-  //   next();
-  // }
 });
 export default router;
